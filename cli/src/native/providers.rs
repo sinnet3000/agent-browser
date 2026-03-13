@@ -160,15 +160,12 @@ async fn connect_browserless() -> Result<(String, Option<ProviderSession>), Stri
         .map(|v| v == "1" || v.eq_ignore_ascii_case("true"))
         .unwrap_or(true);
 
-    let url = format!(
-        "{}/session?token={}",
-        api_url.trim_end_matches('/'),
-        api_key
-    );
+    let url = format!("{}/session", api_url.trim_end_matches('/'));
 
     let client = reqwest::Client::new();
     let response = client
         .post(&url)
+        .query(&[("token", &api_key)])
         .header("Content-Type", "application/json")
         .json(&json!({
             "ttl": ttl,
