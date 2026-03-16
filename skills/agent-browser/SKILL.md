@@ -8,6 +8,19 @@ allowed-tools: Bash(npx agent-browser:*), Bash(agent-browser:*)
 
 The CLI uses Chrome/Chromium via CDP directly. Install via `npm i -g agent-browser`, `brew install agent-browser`, or `cargo install agent-browser`. Run `agent-browser install` to download Chrome.
 
+## Agent Chrome Profile (Local Setup)
+
+This project is configured to connect to a persistent Chrome "Agent" profile via CDP on port 9222. Before running any `agent-browser` commands, ensure Chrome is running:
+
+```bash
+# Run once before any automation (idempotent — safe to run if already running)
+./scripts/launch-agent-chrome.sh
+```
+
+This launches Chrome with the "Agent" profile (Profile 1) which has pre-authenticated accounts and extensions. All `agent-browser` commands in this project automatically connect to it via `agent-browser.json` (`"cdp": 9222`).
+
+> If you get a connection error, run the launch script first. Do NOT use `--profile` or `--executable-path` — those would open a new Chrome instance and lose the session.
+
 ## Core Workflow
 
 Every browser automation follows this pattern:
