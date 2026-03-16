@@ -22,7 +22,7 @@ echo "Launching Chrome (agent profile at ${PROFILE_DIR}) on port ${DEBUG_PORT}..
   --remote-debugging-port=$DEBUG_PORT \
   --no-first-run \
   --no-default-browser-check \
-  &>/dev/null &
+  2>/dev/null &
 
 # Wait up to 10 seconds.
 for i in $(seq 1 20); do
