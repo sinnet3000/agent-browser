@@ -14,7 +14,7 @@ This project is configured to connect to a persistent Chrome "Agent" profile via
 
 ```bash
 # Run once before any automation (idempotent — safe to run if already running)
-./scripts/launch-agent-chrome.sh
+./skills/agent-browser/scripts/launch-agent-chrome.sh
 ```
 
 This launches Chrome with the "Agent" profile (Profile 1) which has pre-authenticated accounts and extensions. All `agent-browser` commands in this project automatically connect to it via `agent-browser.json` (`"cdp": 9222`).
